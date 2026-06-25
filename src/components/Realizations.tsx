@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { workCategories, works, type WorkCategory } from '../data'
 
 const INITIAL = 3
@@ -10,6 +10,7 @@ const labelFor = (id: WorkCategory) =>
 export function Realizations() {
   const [filter, setFilter] = useState<WorkCategory | 'vsetko'>('vsetko')
   const [visible, setVisible] = useState(INITIAL)
+  const sectionRef = useRef<HTMLElement>(null)
 
   const filtered = useMemo(
     () =>
@@ -25,10 +26,17 @@ export function Realizations() {
   const changeFilter = (id: WorkCategory | 'vsetko') => {
     setFilter(id)
     setVisible(INITIAL)
+    // Po zmene filtra sa mriežka zmenší – vrátime sekciu späť do zorného poľa,
+    // aby používateľ nezostal pozerať na prázdne miesto.
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
-    <section id="referencie" className="bg-white pb-20 lg:pb-24">
+    <section
+      ref={sectionRef}
+      id="referencie"
+      className="scroll-mt-24 bg-white pb-20 lg:pb-24"
+    >
       <div className="mx-auto max-w-7xl px-5">
         <h2 className="font-display text-3xl font-bold tracking-wide text-ink-900 uppercase sm:text-4xl">
           Naše <span className="text-brand-500">realizácie</span>
