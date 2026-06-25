@@ -1,57 +1,40 @@
 import { services } from '../data'
 
-function SectionHeading({
-  eyebrow,
-  title,
-  text,
-}: {
-  eyebrow: string
-  title: string
-  text?: string
-}) {
-  return (
-    <div className="mx-auto max-w-2xl text-center">
-      <span className="text-xs font-semibold tracking-widest text-brand-400 uppercase">
-        {eyebrow}
-      </span>
-      <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
-        {title}
-      </h2>
-      {text && <p className="mt-4 text-ink-300">{text}</p>}
-    </div>
-  )
-}
-
 export function Services() {
   return (
-    <section id="sluzby" className="bg-ink-950 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5">
-        <SectionHeading
-          eyebrow="Čo robíme"
-          title="Stavebné služby na kľúč"
-          text="Pokrývame celý proces výstavby pod jednou strechou – nemusíte koordinovať desiatky firiem."
-        />
+    <section id="sluzby" className="bg-white py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-5">
+        <h2 className="font-display text-3xl font-bold tracking-wide text-ink-900 uppercase sm:text-4xl">
+          Naše <span className="text-brand-500">služby</span>
+        </h2>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
-            const Icon = service.icon
-            return (
-              <article
-                key={service.title}
-                className="group rounded-2xl border border-white/10 bg-ink-900/60 p-7 transition-colors hover:border-brand-500/50 hover:bg-ink-900"
-              >
-                <span className="grid h-12 w-12 place-items-center rounded-xl bg-brand-500/10 text-brand-400 transition-colors group-hover:bg-brand-500 group-hover:text-ink-950">
-                  <Icon />
-                </span>
-                <h3 className="mt-5 text-xl font-bold text-white">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {services.map((service) => (
+            <article
+              key={service.title}
+              className="group overflow-hidden rounded-sm border border-ink-100 bg-white shadow-sm transition-shadow hover:shadow-lg"
+            >
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="font-display text-lg font-bold tracking-wide text-ink-900">
                   {service.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-300">
+                <p className="mt-0.5 text-sm font-semibold text-brand-500">
+                  {service.subtitle}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-500">
                   {service.text}
                 </p>
-              </article>
-            )
-          })}
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

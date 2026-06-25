@@ -1,146 +1,120 @@
 import {
-  BuildingIcon,
-  HammerIcon,
-  LayersIcon,
-  PaintRollerIcon,
-  RulerIcon,
-  ShieldIcon,
+  AwardIcon,
+  ClockIcon,
+  FenceIcon,
+  GridIcon,
+  HouseIcon,
+  LeafIcon,
+  PlasterIcon,
+  RenovateIcon,
+  RoofIcon,
+  TagIcon,
+  UsersIcon,
+  WallIcon,
+  WindowIcon,
 } from './components/icons'
 
 export const company = {
-  name: 'ĎURĎSTAV',
-  tagline: 'Staviame s istotou',
-  phone: '+421 905 123 456',
+  name: 'D-A DIURDSTAV',
+  legal: 's.r.o.',
+  subtitle: 'Stavebné Práce',
+  phone: '+421 950 480 672',
+  whatsapp: '+421 944 467 935',
   email: 'info@diurdstav.sk',
-  address: 'Hlavná 12, 010 01 Žilina',
-  ico: '12 345 678',
+  web: 'www.diurdstav.sk',
+  year: 2024,
 }
 
 export const navLinks = [
-  { href: '#sluzby', label: 'Služby' },
-  { href: '#o-nas', label: 'O nás' },
-  { href: '#projekty', label: 'Projekty' },
-  { href: '#postup', label: 'Postup' },
-  { href: '#kontakt', label: 'Kontakt' },
+  { href: '#domov', label: 'DOMOV' },
+  { href: '#o-nas', label: 'O NÁS' },
+  { href: '#sluzby', label: 'SLUŽBY' },
+  { href: '#referencie', label: 'REFERENCIE' },
+  { href: '#kontakt', label: 'KONTAKT' },
 ]
 
 export const services = [
   {
-    icon: BuildingIcon,
-    title: 'Pozemné stavby',
-    text: 'Realizácia rodinných domov a bytových objektov na kľúč – od základov až po kolaudáciu.',
+    icon: HouseIcon,
+    title: 'NOVOSTAVBY',
+    subtitle: 'Rodinné domy na kľúč',
+    text: 'Kompletná výstavba rodinných domov od základov až po odovzdanie.',
+    image: '/images/new-builds.jpg',
   },
   {
-    icon: HammerIcon,
-    title: 'Rekonštrukcie',
-    text: 'Kompletné prestavby bytov, domov a komerčných priestorov s dôrazom na detail.',
+    icon: RenovateIcon,
+    title: 'REKONŠTRUKCIE',
+    subtitle: 'Bytov, domov a objektov',
+    text: 'Rekonštrukcie bytov, domov a komerčných objektov podľa vašich predstáv.',
+    image: '/images/renovations.jpg',
   },
   {
-    icon: LayersIcon,
-    title: 'Zatepľovanie',
-    text: 'Zateplenie fasád a striech, ktoré znižuje náklady na vykurovanie až o 40 %.',
+    icon: RoofIcon,
+    title: 'STRECHY',
+    subtitle: 'Kompletné strešné systémy',
+    text: 'Realizujeme všetky typy striech vrátane krytiny, izolácie a klampiarskych prác.',
+    image: '/images/roofs.jpg',
   },
   {
-    icon: RulerIcon,
-    title: 'Murárske práce',
-    text: 'Presné murivo, omietky, betonáže a sadrokartón od skúsených remeselníkov.',
+    icon: PlasterIcon,
+    title: 'OMIETKY A FASÁDY',
+    subtitle: 'Vnútorné a vonkajšie úpravy',
+    text: 'Vnútorné omietky, fasádne omietky a kompletné povrchové úpravy.',
+    image: '/images/facades.jpg',
   },
   {
-    icon: PaintRollerIcon,
-    title: 'Dokončovacie práce',
-    text: 'Maľby, obklady, dlažby a podlahy, ktoré dotvoria každý interiér.',
+    icon: WindowIcon,
+    title: 'ZATEPĽOVANIE',
+    subtitle: 'Úspora energie a moderný vzhľad',
+    text: 'Zatepľovacie systémy, fasádne obklady a úspora nákladov na energie.',
+    image: '/images/insulation.jpg',
   },
   {
-    icon: ShieldIcon,
-    title: 'Stavebný dozor',
-    text: 'Odborný dohľad nad kvalitou, termínmi a rozpočtom počas celej výstavby.',
+    icon: GridIcon,
+    title: 'ZÁMKOVÁ DLAŽBA',
+    subtitle: 'Chodníky, príjazdy, terasy',
+    text: 'Kvalitné pokládky zámkovej dlažby na chodníky, príjazdy, terasy a okolie domu.',
+    image: '/images/paving.jpg',
   },
-]
-
-export const stats = [
-  { value: '18+', label: 'rokov na trhu' },
-  { value: '320', label: 'dokončených projektov' },
-  { value: '45', label: 'zamestnancov' },
-  { value: '100 %', label: 'spokojných klientov' },
+  {
+    icon: WallIcon,
+    title: 'BETÓNOVÉ PLOTY',
+    subtitle: 'Odolné a bezúdržbové riešenia',
+    text: 'Betónové ploty rôznych vzorov a výšok pre vaše súkromie a bezpečnosť.',
+    image: '/images/fence-concrete.jpg',
+  },
+  {
+    icon: FenceIcon,
+    title: '3D PLOTY',
+    subtitle: 'Moderné panelové oplotenia',
+    text: '3D panelové ploty sú moderné, odolné a nenáročné na údržbu.',
+    image: '/images/fence-3d.jpg',
+  },
+  {
+    icon: LeafIcon,
+    title: 'ZÁHRADNÉ PRÁCE',
+    subtitle: 'Úprava a realizácia exteriéru',
+    text: 'Kompletné záhradné práce, úprava terénu, výsadba a realizácia exteriéru.',
+    image: '/images/garden.jpg',
+  },
 ]
 
 export const reasons = [
-  {
-    title: 'Pevné termíny',
-    text: 'Harmonogram dodržiavame zmluvne. Vždy viete, kedy sa nasťahujete.',
-  },
-  {
-    title: 'Transparentný rozpočet',
-    text: 'Položkový rozpočet bez skrytých nákladov a dodatočných prekvapení.',
-  },
-  {
-    title: 'Vlastný tím',
-    text: 'Nepoužívame neznámych subdodávateľov – staviame vlastnými remeselníkmi.',
-  },
-  {
-    title: 'Záruka 5 rokov',
-    text: 'Na všetky realizácie poskytujeme nadštandardnú záruku a servis.',
-  },
+  { icon: AwardIcon, text: 'Dlhoročné skúsenosti' },
+  { icon: WallIcon, text: 'Kvalitné materiály a precízna práca' },
+  { icon: ClockIcon, text: 'Dodržiavame termíny' },
+  { icon: UsersIcon, text: 'Individuálny prístup ku každému projektu' },
+  { icon: TagIcon, text: 'Férové ceny a transparentnosť' },
 ]
 
-export const projects = [
-  {
-    title: 'Rodinný dom Terchová',
-    category: 'Novostavba na kľúč',
-    from: '#f98307',
-    to: '#7a2b0d',
-  },
-  {
-    title: 'Bytový dom Vlčince',
-    category: 'Pozemná stavba',
-    from: '#4f5870',
-    to: '#161922',
-  },
-  {
-    title: 'Rekonštrukcia vily',
-    category: 'Kompletná prestavba',
-    from: '#ffa620',
-    to: '#94330c',
-  },
-  {
-    title: 'Administratívne centrum',
-    category: 'Komerčná výstavba',
-    from: '#647088',
-    to: '#0c0e15',
-  },
-  {
-    title: 'Zateplenie panelákov',
-    category: 'Obnova fasád',
-    from: '#ffbf4a',
-    to: '#b74106',
-  },
-  {
-    title: 'Penzión Vrátna',
-    category: 'Novostavba',
-    from: '#828ea3',
-    to: '#2a2f3d',
-  },
-]
-
-export const steps = [
-  {
-    number: '01',
-    title: 'Konzultácia',
-    text: 'Stretneme sa, prejdeme vaše predstavy, obhliadneme pozemok či priestor.',
-  },
-  {
-    number: '02',
-    title: 'Návrh a rozpočet',
-    text: 'Pripravíme riešenie, položkový rozpočet a záväzný harmonogram prác.',
-  },
-  {
-    number: '03',
-    title: 'Realizácia',
-    text: 'Staviame vlastným tímom pod stálym stavebným dozorom a kontrolou kvality.',
-  },
-  {
-    number: '04',
-    title: 'Odovzdanie',
-    text: 'Odovzdáme hotové dielo, dokumentáciu a poskytneme 5-ročnú záruku.',
-  },
+export const gallery = [
+  '/images/gallery-1.jpg',
+  '/images/paving.jpg',
+  '/images/gallery-4.jpg',
+  '/images/renovations.jpg',
+  '/images/gallery-2.jpg',
+  '/images/new-builds.jpg',
+  '/images/gallery-5.jpg',
+  '/images/roofs.jpg',
+  '/images/gallery-3.jpg',
 ]

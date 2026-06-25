@@ -1,51 +1,91 @@
-import { company, navLinks } from '../data'
-import { Logo } from './Navbar'
+import { company } from '../data'
+import { Logo } from './Logo'
+import { GlobeIcon, MailIcon, PhoneIcon, WhatsAppIcon } from './icons'
+
+const footerLinks = [
+  { href: '#domov', label: 'Domov' },
+  { href: '#o-nas', label: 'O nás' },
+  { href: '#sluzby', label: 'Služby' },
+  { href: '#referencie', label: 'Referencie' },
+  { href: '#kontakt', label: 'Kontakt' },
+]
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-ink-950">
-      <div className="mx-auto max-w-6xl px-5 py-14">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
-          <div>
-            <Logo />
-            <p className="mt-4 max-w-xs text-sm text-ink-400">
-              Stavebná spoločnosť so sídlom v Žiline. {company.tagline} od roku
-              2008.
-            </p>
-          </div>
+    <footer className="bg-ink-950 text-ink-300">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-3">
+        <div>
+          <h3 className="font-display text-base font-bold tracking-widest text-white uppercase">
+            Kontakt
+          </h3>
+          <ul className="mt-5 space-y-3 text-sm">
+            <li>
+              <a
+                href={`tel:${company.phone.replace(/\s/g, '')}`}
+                className="flex items-center gap-3 hover:text-brand-500"
+              >
+                <PhoneIcon width={18} height={18} className="text-brand-500" />
+                {company.phone}
+              </a>
+            </li>
+            <li className="flex items-center gap-3">
+              <WhatsAppIcon width={18} height={18} className="text-brand-500" />
+              {company.whatsapp} <span className="text-ink-500">(WhatsApp)</span>
+            </li>
+            <li>
+              <a
+                href={`mailto:${company.email}`}
+                className="flex items-center gap-3 hover:text-brand-500"
+              >
+                <MailIcon width={18} height={18} className="text-brand-500" />
+                {company.email}
+              </a>
+            </li>
+            <li className="flex items-center gap-3">
+              <GlobeIcon width={18} height={18} className="text-brand-500" />
+              {company.web}
+            </li>
+          </ul>
+        </div>
 
-          <div>
-            <h3 className="text-sm font-semibold text-white">Navigácia</h3>
-            <ul className="mt-4 space-y-2">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-ink-400 transition-colors hover:text-brand-400"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold text-white">Kontakt</h3>
-            <ul className="mt-4 space-y-2 text-sm text-ink-400">
-              <li>{company.phone}</li>
-              <li>{company.email}</li>
-              <li>{company.address}</li>
-              <li>IČO: {company.ico}</li>
-            </ul>
+        <div>
+          <h3 className="font-display text-base font-bold tracking-widest text-white uppercase">
+            Kde nás nájdete
+          </h3>
+          <div className="mt-5 overflow-hidden rounded-sm border border-white/10">
+            <iframe
+              title="Mapa – D-A DIURDSTAV"
+              src="https://www.google.com/maps?q=Žilina,Slovensko&z=12&output=embed"
+              className="h-48 w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-ink-500 sm:flex-row">
+        <div className="lg:text-right">
+          <div className="lg:flex lg:justify-end">
+            <Logo />
+          </div>
+          <ul className="mt-6 space-y-2 text-sm">
+            {footerLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className="hover:text-brand-500">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-5 text-xs text-ink-500 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {company.name}. Všetky práva vyhradené.
+            © {company.year} {company.name} {company.legal}. Všetky práva
+            vyhradené.
           </p>
-          <p>diurdstav.sk</p>
+          <p>Ochrana osobných údajov | Podmienky používania</p>
         </div>
       </div>
     </footer>

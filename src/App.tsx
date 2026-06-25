@@ -1,11 +1,10 @@
-import { About } from './components/About'
-import { Contact } from './components/Contact'
+import { CtaProject } from './components/CtaProject'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { Navbar } from './components/Navbar'
-import { Process } from './components/Process'
-import { Projects } from './components/Projects'
+import { Realizations } from './components/Realizations'
 import { Services } from './components/Services'
+import { WhyUs } from './components/WhyUs'
 
 export default function App() {
   return (
@@ -13,11 +12,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <WhyUs />
         <Services />
-        <About />
-        <Projects />
-        <Process />
-        <Contact />
+        <Realizations />
+        <CtaProject />
       </main>
       <Footer />
     </>
