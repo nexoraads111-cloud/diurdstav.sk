@@ -1,31 +1,31 @@
-import { useEffect, useRef, useState } from 'react'
-import { gallery } from '../data'
-import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from './icons'
+import { useMemo, useState } from 'react'
+import { workCategories, works, type WorkCategory } from '../data'
 
-const CARD = 300
-const GAP = 16
-const STEP = CARD + GAP
+const INITIAL = 3
+const STEP = 3
+
+const labelFor = (id: WorkCategory) =>
+  workCategories.find((c) => c.id === id)?.label ?? ''
 
 export function Realizations() {
-  const wrapRef = useRef<HTMLDivElement>(null)
-  const [perView, setPerView] = useState(1)
-  const [index, setIndex] = useState(0)
+  const [filter, setFilter] = useState<WorkCategory | 'vsetko'>('vsetko')
+  const [visible, setVisible] = useState(INITIAL)
 
-  useEffect(() => {
-    const calc = () => {
-      const width = wrapRef.current?.clientWidth ?? STEP
-      setPerView(Math.max(1, Math.floor((width + GAP) / STEP)))
-    }
-    calc()
-    window.addEventListener('resize', calc)
-    return () => window.removeEventListener('resize', calc)
-  }, [])
+  const filtered = useMemo(
+    () =>
+      filter === 'vsetko'
+        ? works
+        : works.filter((w) => w.category === filter),
+    [filter],
+  )
 
-  const maxIndex = Math.max(0, gallery.length - perView)
-  const current = Math.min(index, maxIndex)
+  const shown = filtered.slice(0, visible)
+  const hasMore = visible < filtered.length
 
-  const move = (direction: number) =>
-    setIndex((i) => Math.min(maxIndex, Math.max(0, i + direction)))
+  const changeFilter = (id: WorkCategory | 'vsetko') => {
+    setFilter(id)
+    setVisible(INITIAL)
+  }
 
   return (
     <section id="referencie" className="bg-white pb-20 lg:pb-24">
@@ -33,60 +33,70 @@ export function Realizations() {
         <h2 className="font-display text-3xl font-bold tracking-wide text-ink-900 uppercase sm:text-4xl">
           Naše <span className="text-brand-500">realizácie</span>
         </h2>
+        <p className="mt-4 max-w-2xl text-ink-500">
+          Prezrite si výber našich prác. Filtrujte podľa typu realizácie a
+          kliknutím na „Zobraziť viac" načítajte ďalšie fotografie.
+        </p>
 
-        <div className="relative mt-10">
-          <button
-            type="button"
-            aria-label="Predchádzajúce"
-            onClick={() => move(-1)}
-            disabled={current === 0}
-            className="absolute top-1/2 -left-3 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-ink-200 bg-white text-ink-700 shadow-md transition-colors hover:bg-brand-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-ink-700 sm:-left-5"
-          >
-            <ChevronLeftIcon />
-          </button>
+        <div className="mt-8 flex flex-wrap gap-2">
+          {workCategories.map((cat) => {
+            const active = filter === cat.id
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => changeFilter(cat.id)}
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                  active
+                    ? 'border-brand-500 bg-brand-500 text-white'
+                    : 'border-ink-200 bg-white text-ink-600 hover:border-brand-500 hover:text-brand-500'
+                }`}
+              >
+                {cat.label}
+              </button>
+            )
+          })}
+        </div>
 
-          <div ref={wrapRef} className="overflow-hidden">
-            <div
-              className="flex gap-4 transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${current * STEP}px)` }}
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {shown.map((work) => (
+            <figure
+              key={work.image + work.title}
+              className="group relative aspect-[4/3] overflow-hidden rounded-sm border border-ink-100"
             >
-              {gallery.map((src, i) => (
-                <figure
-                  key={src + i}
-                  className="aspect-[4/3] shrink-0 overflow-hidden rounded-sm border border-ink-100"
-                  style={{ width: CARD }}
-                >
-                  <img
-                    src={src}
-                    alt={`Realizácia ${i + 1}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </figure>
-              ))}
-            </div>
+              <img
+                src={work.image}
+                alt={work.title}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-950/85 via-ink-950/40 to-transparent p-4 pt-10">
+                <span className="font-display inline-block rounded-sm bg-brand-500 px-2 py-0.5 text-[0.65rem] font-bold tracking-wide text-white uppercase">
+                  {labelFor(work.category)}
+                </span>
+                <p className="mt-1.5 font-semibold text-white">{work.title}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        {filtered.length === 0 && (
+          <p className="mt-10 text-center text-ink-500">
+            V tejto kategórii zatiaľ nemáme fotografie.
+          </p>
+        )}
+
+        {hasMore && (
+          <div className="mt-10 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setVisible((v) => v + STEP)}
+              className="rounded-sm bg-brand-500 px-7 py-3 text-sm font-bold tracking-wide text-white uppercase transition-colors hover:bg-brand-600"
+            >
+              Zobraziť viac
+            </button>
           </div>
-
-          <button
-            type="button"
-            aria-label="Ďalšie"
-            onClick={() => move(1)}
-            disabled={current >= maxIndex}
-            className="absolute top-1/2 -right-3 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-ink-200 bg-white text-ink-700 shadow-md transition-colors hover:bg-brand-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-ink-700 sm:-right-5"
-          >
-            <ChevronRightIcon />
-          </button>
-        </div>
-
-        <div className="mt-8 flex justify-center">
-          <a
-            href="#kontakt"
-            className="inline-flex items-center gap-2 rounded-sm bg-brand-500 px-7 py-3 text-sm font-bold tracking-wide text-white uppercase transition-colors hover:bg-brand-600"
-          >
-            Zobraziť viac referencií
-            <ArrowRightIcon width={18} height={18} />
-          </a>
-        </div>
+        )}
       </div>
     </section>
   )
