@@ -1,4 +1,4 @@
-import { services } from '../data'
+import { services, servicesIntro } from '../data'
 
 export function Services() {
   return (
@@ -7,6 +7,7 @@ export function Services() {
         <h2 className="font-display text-3xl font-bold tracking-wide text-ink-900 uppercase sm:text-4xl">
           Naše <span className="text-brand-500">služby</span>
         </h2>
+        <p className="mt-4 max-w-3xl text-ink-500">{servicesIntro}</p>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {services.map((service) => (
