@@ -18,14 +18,15 @@ React site (content in Slovak).
 
 ## Structure
 
-- `src/App.tsx` – composes the page sections
-- `src/components/` – section components (`Hero`, `Services`, `About`, `Projects`, `Process`, `Contact`, `Footer`, `Navbar`) and `icons.tsx` (inline SVG icons)
-- `src/data.ts` – all editable site content (company info, services, projects, steps)
-- `src/index.css` – Tailwind import, theme tokens (`brand`/`ink` palettes), and the `.form-input` component class
+- `src/App.tsx` – composes the page sections in order: `Navbar`, `Hero`, `WhyUs`, `Services`, `Realizations`, `CtaProject`, `Footer`
+- `src/components/` – section components plus `Logo.tsx` and `icons.tsx` (inline SVG icons)
+- `src/data.ts` – all editable site content (company info, nav links, services, reasons, gallery image list)
+- `src/index.css` – Tailwind import, theme tokens (`brand` = red, `ink` = dark palettes), `.form-input` and `.no-scrollbar` component classes
+- `public/images/` – local JPGs used by the services grid, hero, and gallery (referenced as `/images/<name>.jpg`)
 
 ## Cursor Cloud specific instructions
 
 - Dependencies are plain `npm install`; the startup update script already runs it.
 - Tailwind v4 here is configured entirely in CSS (`@import "tailwindcss";` + `@theme {}` in `src/index.css`). There is intentionally no `tailwind.config.js`/`postcss.config.js`; add theme tokens via `@theme` rather than creating a JS config.
-- The contact form is front-end only — submitting it just shows an in-page success state (no backend/network call).
-- Google Fonts (Inter/Sora) load via a `<link>` in `index.html`; if the VM has no internet the site still renders correctly with system-font fallbacks.
+- Images live in `public/images/` and are committed to the repo, so the site renders offline. Only the footer map (`<iframe>` to Google Maps) and Google Fonts (Inter/Oswald) need internet; both degrade gracefully (system-font fallback / empty map frame) when offline.
+- The site is a single-page marketing site with no backend. CTAs use `tel:`/`mailto:` links; there is no form submission endpoint.
