@@ -1,15 +1,31 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gallery } from '../data'
 import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from './icons'
 
-export function Realizations() {
-  const trackRef = useRef<HTMLDivElement>(null)
+const CARD = 300
+const GAP = 16
+const STEP = CARD + GAP
 
-  const scroll = (direction: number) => {
-    const el = trackRef.current
-    if (!el) return
-    el.scrollBy({ left: direction * (el.clientWidth * 0.8), behavior: 'smooth' })
-  }
+export function Realizations() {
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const [perView, setPerView] = useState(1)
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const calc = () => {
+      const width = wrapRef.current?.clientWidth ?? STEP
+      setPerView(Math.max(1, Math.floor((width + GAP) / STEP)))
+    }
+    calc()
+    window.addEventListener('resize', calc)
+    return () => window.removeEventListener('resize', calc)
+  }, [])
+
+  const maxIndex = Math.max(0, gallery.length - perView)
+  const current = Math.min(index, maxIndex)
+
+  const move = (direction: number) =>
+    setIndex((i) => Math.min(maxIndex, Math.max(0, i + direction)))
 
   return (
     <section id="referencie" className="bg-white pb-20 lg:pb-24">
@@ -22,36 +38,41 @@ export function Realizations() {
           <button
             type="button"
             aria-label="Predchádzajúce"
-            onClick={() => scroll(-1)}
-            className="absolute top-1/2 -left-3 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-ink-200 bg-white text-ink-700 shadow-md transition-colors hover:bg-brand-500 hover:text-white sm:-left-5"
+            onClick={() => move(-1)}
+            disabled={current === 0}
+            className="absolute top-1/2 -left-3 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-ink-200 bg-white text-ink-700 shadow-md transition-colors hover:bg-brand-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-ink-700 sm:-left-5"
           >
             <ChevronLeftIcon />
           </button>
 
-          <div
-            ref={trackRef}
-            className="no-scrollbar flex snap-x gap-4 overflow-x-auto scroll-smooth pb-2"
-          >
-            {gallery.map((src, index) => (
-              <figure
-                key={src + index}
-                className="aspect-[4/3] w-[260px] shrink-0 snap-start overflow-hidden rounded-sm border border-ink-100 sm:w-[300px]"
-              >
-                <img
-                  src={src}
-                  alt={`Realizácia ${index + 1}`}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </figure>
-            ))}
+          <div ref={wrapRef} className="overflow-hidden">
+            <div
+              className="flex gap-4 transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${current * STEP}px)` }}
+            >
+              {gallery.map((src, i) => (
+                <figure
+                  key={src + i}
+                  className="aspect-[4/3] shrink-0 overflow-hidden rounded-sm border border-ink-100"
+                  style={{ width: CARD }}
+                >
+                  <img
+                    src={src}
+                    alt={`Realizácia ${i + 1}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </figure>
+              ))}
+            </div>
           </div>
 
           <button
             type="button"
             aria-label="Ďalšie"
-            onClick={() => scroll(1)}
-            className="absolute top-1/2 -right-3 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-ink-200 bg-white text-ink-700 shadow-md transition-colors hover:bg-brand-500 hover:text-white sm:-right-5"
+            onClick={() => move(1)}
+            disabled={current >= maxIndex}
+            className="absolute top-1/2 -right-3 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full border border-ink-200 bg-white text-ink-700 shadow-md transition-colors hover:bg-brand-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-ink-700 sm:-right-5"
           >
             <ChevronRightIcon />
           </button>
