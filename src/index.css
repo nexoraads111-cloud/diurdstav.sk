@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Sora', 'Inter', system-ui, sans-serif;
+
+  --color-brand-50: #fff8eb;
+  --color-brand-100: #ffeec6;
+  --color-brand-200: #ffd988;
+  --color-brand-300: #ffbf4a;
+  --color-brand-400: #ffa620;
+  --color-brand-500: #f98307;
+  --color-brand-600: #dd6002;
+  --color-brand-700: #b74106;
+  --color-brand-800: #94330c;
+  --color-brand-900: #7a2b0d;
+
+  --color-ink-50: #f6f7f9;
+  --color-ink-100: #eceef2;
+  --color-ink-200: #d4d8e0;
+  --color-ink-300: #aeb6c4;
+  --color-ink-400: #828ea3;
+  --color-ink-500: #647088;
+  --color-ink-600: #4f5870;
+  --color-ink-700: #41485c;
+  --color-ink-800: #2a2f3d;
+  --color-ink-900: #161922;
+  --color-ink-950: #0c0e15;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-ink-950);
+  color: var(--color-ink-100);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+@layer components {
+  .form-input {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, white 12%, transparent);
+    background-color: var(--color-ink-900);
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    color: var(--color-ink-50);
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .form-input::placeholder {
+    color: var(--color-ink-500);
+  }
+
+  .form-input:focus {
+    border-color: var(--color-brand-500);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-500) 25%, transparent);
+  }
+}
