@@ -215,6 +215,23 @@ export function ChevronRightIcon(props: IconProps) {
   )
 }
 
+export function StarIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 2.5l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.55l-5.91 3.11 1.13-6.57L2.45 9.44l6.6-.96L12 2.5Z" />
+    </svg>
+  )
+}
+
+export function QuoteIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M7 7h4v4c0 3-1.5 4.5-4 5" />
+      <path d="M14 7h4v4c0 3-1.5 4.5-4 5" />
+    </svg>
+  )
+}
+
 export function MenuIcon(props: IconProps) {
   return (
     <svg {...base(props)}>

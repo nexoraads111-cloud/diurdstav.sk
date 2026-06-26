@@ -7,6 +7,7 @@ const footerLinks = [
   { href: '#o-nas', label: 'O nás' },
   { href: '#sluzby', label: 'Služby' },
   { href: '#referencie', label: 'Referencie' },
+  { href: '#recenzie', label: 'Recenzie' },
   { href: '#kontakt', label: 'Kontakt' },
 ]
 

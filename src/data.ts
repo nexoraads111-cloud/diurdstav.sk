@@ -25,122 +25,164 @@ export const company = {
   year: 2024,
 }
 
+// Číslo pre WhatsApp odkaz (iba číslice, medzinárodný formát).
+export const whatsappDigits = '421944467935'
+
 export const navLinks = [
   { href: '#domov', label: 'DOMOV' },
   { href: '#o-nas', label: 'O NÁS' },
   { href: '#sluzby', label: 'SLUŽBY' },
   { href: '#referencie', label: 'REFERENCIE' },
+  { href: '#recenzie', label: 'RECENZIE' },
   { href: '#kontakt', label: 'KONTAKT' },
 ]
 
 export const services = [
   {
-    icon: HouseIcon,
-    title: 'NOVOSTAVBY',
-    subtitle: 'Rodinné domy na kľúč',
-    text: 'Kompletná výstavba rodinných domov od základov až po odovzdanie.',
-    image: '/images/new-builds.jpg',
-  },
-  {
-    icon: RenovateIcon,
-    title: 'REKONŠTRUKCIE',
-    subtitle: 'Bytov, domov a objektov',
-    text: 'Rekonštrukcie bytov, domov a komerčných objektov podľa vašich predstáv.',
-    image: '/images/renovations.jpg',
-  },
-  {
-    icon: RoofIcon,
-    title: 'STRECHY',
-    subtitle: 'Kompletné strešné systémy',
-    text: 'Realizujeme všetky typy striech vrátane krytiny, izolácie a klampiarskych prác.',
-    image: '/images/roofs.jpg',
-  },
-  {
-    icon: PlasterIcon,
-    title: 'OMIETKY A FASÁDY',
-    subtitle: 'Vnútorné a vonkajšie úpravy',
-    text: 'Vnútorné omietky, fasádne omietky a kompletné povrchové úpravy.',
-    image: '/images/facades.jpg',
-  },
-  {
-    icon: WindowIcon,
-    title: 'ZATEPĽOVANIE',
-    subtitle: 'Úspora energie a moderný vzhľad',
-    text: 'Zatepľovacie systémy, fasádne obklady a úspora nákladov na energie.',
-    image: '/images/insulation.jpg',
-  },
-  {
     icon: GridIcon,
     title: 'ZÁMKOVÁ DLAŽBA',
     subtitle: 'Chodníky, príjazdy, terasy',
-    text: 'Pokládka zámkovej dlažby na chodníky, príjazdové cesty, terasy a okolie domu – vrátane podkladových vrstiev, obrubníkov a odvodnenia.',
-    image: '/images/paving.jpg',
+    text: 'Pokládka zámkovej dlažby na chodníky, príjazdové cesty, terasy a okolie domu – vrátane podkladových vrstiev a odvodnenia.',
+    image: '/images/works/work-01.jpg',
   },
   {
     icon: WallIcon,
-    title: 'BETÓNOVÉ PLOTY',
-    subtitle: 'Odolné a bezúdržbové riešenia',
-    text: 'Montáž betónových plotov rôznych vzorov a výšok – odolné a bezúdržbové oplotenie pre vaše súkromie a bezpečnosť.',
-    image: '/images/fence-concrete.jpg',
-  },
-  {
-    icon: FenceIcon,
-    title: '3D PLOTY',
-    subtitle: 'Moderné panelové oplotenia',
-    text: '3D panelové ploty (panelové oplotenie) – pevné, moderné a nenáročné na údržbu, ideálne pre rodinné domy aj firemné areály.',
-    image: '/images/fence-3d.jpg',
+    title: 'OBRUBNÍKY',
+    subtitle: 'Cestné a záhonové obrubníky',
+    text: 'Presné osadzovanie betónových a žulových obrubníkov do betónového lôžka pre dokonalé a trvácne ohraničenie plôch.',
+    image: '/images/works/work-13.jpg',
   },
   {
     icon: LeafIcon,
-    title: 'ZÁHRADNÉ PRÁCE',
-    subtitle: 'Úprava a realizácia exteriéru',
-    text: 'Kompletné záhradné a exteriérové práce – úprava terénu, výsadba, zakladanie trávnikov a realizácia okolia domu.',
-    image: '/images/garden.jpg',
+    title: 'ŽULOVÉ KOCKY',
+    subtitle: 'Dlažba z prírodného kameňa',
+    text: 'Pokládka žulových kociek a prírodného kameňa – odolné a estetické riešenie pre vjazdy, námestia a okolie budov.',
+    image: '/images/works/work-08.jpg',
+  },
+  {
+    icon: HouseIcon,
+    title: 'SPEVNENÉ PLOCHY',
+    subtitle: 'Parkoviská a vjazdy',
+    text: 'Realizácia spevnených plôch, parkovísk a príjazdových ciest s dôrazom na únosnosť a správne spádovanie.',
+    image: '/images/works/work-07.jpg',
+  },
+  {
+    icon: RenovateIcon,
+    title: 'ZEMNÉ PRÁCE',
+    subtitle: 'Výkopy a príprava podkladu',
+    text: 'Výkopové a prípravné práce, úprava terénu, zhutnenie podkladu a odvodnenie pred samotnou pokládkou.',
+    image: '/images/works/work-16.jpg',
+  },
+  {
+    icon: RoofIcon,
+    title: 'CHODNÍKY A CESTY',
+    subtitle: 'Mestská infraštruktúra',
+    text: 'Výstavba a rekonštrukcia chodníkov vrátane vodiacich a varovných pásov pre bezbariérový pohyb.',
+    image: '/images/works/work-03.jpg',
+  },
+  {
+    icon: PlasterIcon,
+    title: 'REKONŠTRUKCIE',
+    subtitle: 'Obnova spevnených plôch',
+    text: 'Rekonštrukcie existujúcich chodníkov, vjazdov a plôch – výmena povrchu, obrubníkov a odvodnenia.',
+    image: '/images/works/work-02.jpg',
+  },
+  {
+    icon: WindowIcon,
+    title: 'ODVODNENIE',
+    subtitle: 'Žľaby a vpuste',
+    text: 'Osadenie odvodňovacích žľabov, vpustí a líniových systémov, aby na vašich plochách nestála voda.',
+    image: '/images/works/work-06.jpg',
+  },
+  {
+    icon: FenceIcon,
+    title: 'OPLOTENIA',
+    subtitle: 'Ploty a oplotenie pozemkov',
+    text: 'Betónové aj panelové (3D) ploty a oplotenia pozemkov – pevné, moderné a bezúdržbové riešenia.',
+    image: '/images/fence-3d.jpg',
   },
 ]
 
 export const servicesIntro =
-  'Sme komplexná stavebná firma – od hrubej stavby cez rekonštrukcie a strechy až po dlažby, ploty a úpravu okolia. Všetko zastrešíme pod jednou strechou, aby ste nemuseli riešiť viacero firiem.'
+  'Špecializujeme sa na zámkovú dlažbu, obrubníky, žulové kocky a spevnené plochy. Postaráme sa o celú realizáciu – od zemných prác a podkladu cez odvodnenie až po finálnu pokládku.'
 
 export const reasons = [
   { icon: AwardIcon, text: 'Dlhoročné skúsenosti' },
   { icon: WallIcon, text: 'Kvalitné materiály a precízna práca' },
-  { icon: ClockIcon, text: 'Dodržiavame termíny' },
+  { icon: ClockIcon, text: 'Dodržiavame dohodnuté termíny' },
   { icon: UsersIcon, text: 'Individuálny prístup ku každému projektu' },
   { icon: TagIcon, text: 'Férové ceny a transparentnosť' },
 ]
 
+export const about = {
+  photo: '/images/owner.jpg',
+  paragraphs: [
+    'D-A DIURDSTAV s.r.o. je tím skúsených dlaždičov a stavbárov, pre ktorých je každá realizácia vizitkou. Venujeme sa zámkovej dlažbe, obrubníkom, žulovým kockám a spevneným plochám.',
+    'Pracujeme precízne, čisto a v dohodnutých termínoch. Postaráme sa o celý proces – od obhliadky a návrhu cez zemné práce a podklad až po finálnu pokládku a upratanie po sebe.',
+  ],
+  stats: [
+    { value: '10+', label: 'rokov skúseností' },
+    { value: '250+', label: 'dokončených realizácií' },
+    { value: '100 %', label: 'spokojných zákazníkov' },
+  ],
+}
+
 // Kategórie pre filter v sekcii „Naše realizácie".
 export const workCategories = [
   { id: 'vsetko', label: 'Všetko' },
-  { id: 'novostavby', label: 'Novostavby' },
-  { id: 'rekonstrukcie', label: 'Rekonštrukcie' },
-  { id: 'strechy', label: 'Strechy' },
-  { id: 'fasady', label: 'Omietky a fasády' },
-  { id: 'zateplovanie', label: 'Zatepľovanie' },
   { id: 'dlazba', label: 'Zámková dlažba' },
-  { id: 'ploty-betonove', label: 'Betónové ploty' },
-  { id: 'ploty-3d', label: '3D ploty' },
-  { id: 'zahrada', label: 'Záhradné práce' },
+  { id: 'obrubniky', label: 'Obrubníky' },
+  { id: 'zemne', label: 'Zemné práce' },
 ] as const
 
 export type WorkCategory = (typeof workCategories)[number]['id']
 
-// Realizácie (referencie). FOTKY SÚ DOČASNÉ – nahraďte ich vlastnými fotografiami:
-// stačí prepísať súbory v priečinku `public/images/` (rovnaké názvy) alebo zmeniť cesty nižšie.
-export const works: { image: string; title: string; category: WorkCategory }[] = [
-  { image: '/images/new-builds.jpg', title: 'Rodinný dom na kľúč', category: 'novostavby' },
-  { image: '/images/gallery-1.jpg', title: 'Novostavba s terasou', category: 'novostavby' },
-  { image: '/images/gallery-2.jpg', title: 'Moderná vila', category: 'novostavby' },
-  { image: '/images/gallery-3.jpg', title: 'Projektová príprava', category: 'novostavby' },
-  { image: '/images/renovations.jpg', title: 'Rekonštrukcia interiéru', category: 'rekonstrukcie' },
-  { image: '/images/gallery-4.jpg', title: 'Prestavba obývačky', category: 'rekonstrukcie' },
-  { image: '/images/gallery-5.jpg', title: 'Rekonštrukcia izby', category: 'rekonstrukcie' },
-  { image: '/images/roofs.jpg', title: 'Sedlová strecha', category: 'strechy' },
-  { image: '/images/facades.jpg', title: 'Fasáda rodinného domu', category: 'fasady' },
-  { image: '/images/insulation.jpg', title: 'Zateplenie bytového domu', category: 'zateplovanie' },
-  { image: '/images/paving.jpg', title: 'Zámková dlažba – príjazd', category: 'dlazba' },
-  { image: '/images/fence-concrete.jpg', title: 'Betónový plot', category: 'ploty-betonove' },
-  { image: '/images/fence-3d.jpg', title: '3D panelový plot', category: 'ploty-3d' },
-  { image: '/images/garden.jpg', title: 'Úprava záhrady', category: 'zahrada' },
+// Reálne fotografie realizácií (priečinok public/images/works).
+export const works: { image: string; title: string; category: Exclude<WorkCategory, 'vsetko'> }[] = [
+  { image: '/images/works/work-01.jpg', title: 'Dekoratívna dlažba na nároží', category: 'dlazba' },
+  { image: '/images/works/work-02.jpg', title: 'Chodník popri ceste', category: 'dlazba' },
+  { image: '/images/works/work-03.jpg', title: 'Dlažba na moste s vodiacim pásom', category: 'dlazba' },
+  { image: '/images/works/work-04.jpg', title: 'Oblúkový chodník s vodiacou líniou', category: 'dlazba' },
+  { image: '/images/works/work-05.jpg', title: 'Nový chodník pri komunikácii', category: 'dlazba' },
+  { image: '/images/works/work-06.jpg', title: 'Spevnená plocha pri budove', category: 'dlazba' },
+  { image: '/images/works/work-07.jpg', title: 'Parkovacia plocha a dlažba', category: 'dlazba' },
+  { image: '/images/works/work-08.jpg', title: 'Zámková dlažba a žulové kocky', category: 'dlazba' },
+  { image: '/images/works/work-09.jpg', title: 'Dlažba pri zastávke MHD', category: 'dlazba' },
+  { image: '/images/works/work-10.jpg', title: 'Chodník zo zámkovej dlažby', category: 'dlazba' },
+  { image: '/images/works/work-11.jpg', title: 'Pokládka zámkovej dlažby', category: 'dlazba' },
+  { image: '/images/works/work-12.jpg', title: 'Pokládka dlažby – tím v akcii', category: 'dlazba' },
+  { image: '/images/works/work-13.jpg', title: 'Osadzovanie obrubníkov', category: 'obrubniky' },
+  { image: '/images/works/work-14.jpg', title: 'Príprava a osadenie obrubníka', category: 'obrubniky' },
+  { image: '/images/works/work-15.jpg', title: 'Obrubníky a žulové kocky', category: 'obrubniky' },
+  { image: '/images/works/work-16.jpg', title: 'Zemné a prípravné práce', category: 'zemne' },
+]
+
+export type Review = {
+  name: string
+  rating: number
+  text: string
+  date: string
+}
+
+// Ukážkové recenzie (zobrazené vždy). Nové recenzie od návštevníkov
+// sa ukladajú v prehliadači (localStorage) a pridávajú sa pred tieto.
+export const seedReviews: Review[] = [
+  {
+    name: 'Martin K.',
+    rating: 5,
+    text: 'Vynikajúca práca! Položili nám príjazd zo zámkovej dlažby rýchlo a veľmi čisto. Všetko dokonale rovné, odporúčam.',
+    date: '2024-09-12',
+  },
+  {
+    name: 'Zuzana H.',
+    rating: 5,
+    text: 'Profesionálny prístup od obhliadky až po odovzdanie. Obrubníky a chodník vyzerajú skvele, termín dodržali.',
+    date: '2024-07-28',
+  },
+  {
+    name: 'Peter Novák',
+    rating: 4,
+    text: 'Spokojnosť s realizáciou parkovacej plochy. Komunikácia bezproblémová, cena férová.',
+    date: '2024-06-03',
+  },
 ]
