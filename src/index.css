@@ -79,3 +79,46 @@ h3,
     display: none;
   }
 }
+
+/* Scroll-reveal animation (defaults to visible; animates only when motion is allowed). */
+.reveal {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Floating WhatsApp button pulse */
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wa-pulse {
+    animation: wa-pulse 2.4s infinite;
+  }
+}
+
+/* Hide native scrollbar nuance already covered; lock body scroll when modal open */
+body.modal-open {
+  overflow: hidden;
+}

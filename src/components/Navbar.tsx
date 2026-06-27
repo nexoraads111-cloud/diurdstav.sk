@@ -26,7 +26,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3">
         <Logo onClick={() => setOpen(false)} />
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        <ul className="hidden items-center gap-5 lg:flex xl:gap-7">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -43,10 +43,10 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-5 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           <a
             href={`tel:${company.phone.replace(/\s/g, '')}`}
-            className="flex items-center gap-2 text-sm font-semibold text-white hover:text-brand-500"
+            className="hidden items-center gap-2 text-sm font-semibold text-white hover:text-brand-500 xl:flex"
           >
             <PhoneIcon width={18} height={18} className="text-brand-500" />
             {company.phone}
