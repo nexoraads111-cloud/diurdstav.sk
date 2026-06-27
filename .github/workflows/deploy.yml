@@ -27,9 +27,22 @@ jobs:
           node-version: 22
           cache: npm
 
-      # Switches the Pages source to "GitHub Actions" (build_type: workflow),
-      # which disables the legacy branch-based deployment that was publishing
-      # the unbuilt source (causing the white screen).
+      # Force the Pages source to "GitHub Actions" (build_type: workflow) via the
+      # REST API. This disables the legacy branch-based deployment that kept
+      # publishing the unbuilt source and caused the white screen. configure-pages
+      # alone did not switch an already branch-configured site, so we PUT it.
+      - name: Force Pages build type to workflow
+        continue-on-error: true
+        run: |
+          echo "Setting Pages build_type=workflow for ${{ github.repository }}"
+          code=$(curl -sS -o /tmp/pages.json -w '%{http_code}' -X PUT \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" \
+            -d '{"build_type":"workflow"}')
+          echo "HTTP $code"; cat /tmp/pages.json || true
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
         with:
@@ -53,6 +66,13 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Safety net: if the site is still on "Deploy from a branch", GitHub also
+      # runs its legacy build that publishes the unbuilt source. Waiting here makes
+      # our built deployment publish last so it wins the race. Harmless once the
+      # source is set to GitHub Actions (no legacy build runs).
+      - name: Wait so built deploy publishes last
+        run: sleep 60
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
