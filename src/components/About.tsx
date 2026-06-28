@@ -19,7 +19,7 @@ export function About() {
               />
             </div>
             <div className="absolute -right-3 -bottom-6 hidden rounded-xl bg-brand-500 px-6 py-4 text-white shadow-lg sm:block">
-              <p className="font-display text-2xl font-bold">10+</p>
+              <p className="font-display text-2xl font-bold">8</p>
               <p className="text-xs tracking-wide uppercase">rokov praxe</p>
             </div>
           </div>

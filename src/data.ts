@@ -3,30 +3,31 @@ import {
   ClockIcon,
   FenceIcon,
   GridIcon,
-  HouseIcon,
   LeafIcon,
-  PlasterIcon,
-  RenovateIcon,
-  RoofIcon,
   TagIcon,
   UsersIcon,
   WallIcon,
-  WindowIcon,
 } from './components/icons'
 
 export const company = {
   name: 'D-A DIURDSTAV',
   legal: 's.r.o.',
   subtitle: 'Stavebné Práce',
-  phone: '+421 950 480 672',
-  whatsapp: '+421 944 467 935',
-  email: 'info@diurdstav.sk',
+  phone: '+421 944 667 935',
+  whatsapp: '+421 944 667 935',
+  email: 'durdstav@gmail.com',
   web: 'www.diurdstav.sk',
+  ico: '57 709 556',
+  region: 'Bratislava a okolie',
   year: 2024,
 }
 
 // Číslo pre WhatsApp odkaz (iba číslice, medzinárodný formát).
-export const whatsappDigits = '421944467935'
+export const whatsappDigits = '421944667935'
+
+// Text o aktuálnom zameraní a oblasti pôsobenia.
+export const currentFocus = 'Momentálne realizujeme najmä zámkovú dlažbu.'
+export const serviceArea = 'Pracujeme v Bratislave a okolí.'
 
 export const navLinks = [
   { href: '#domov', label: 'DOMOV' },
@@ -42,69 +43,30 @@ export const services = [
     icon: GridIcon,
     title: 'ZÁMKOVÁ DLAŽBA',
     subtitle: 'Chodníky, príjazdy, terasy',
-    text: 'Pokládka zámkovej dlažby na chodníky, príjazdové cesty, terasy a okolie domu – vrátane podkladových vrstiev a odvodnenia.',
-    image: '/images/works/work-01.jpg',
+    text: 'Pokládka zámkovej dlažby na chodníky, príjazdové cesty, terasy a okolie domu – vrátane podkladových vrstiev, obrubníkov a odvodnenia.',
   },
   {
     icon: WallIcon,
-    title: 'OBRUBNÍKY',
-    subtitle: 'Cestné a záhonové obrubníky',
-    text: 'Presné osadzovanie betónových a žulových obrubníkov do betónového lôžka pre dokonalé a trvácne ohraničenie plôch.',
-    image: '/images/works/work-13.jpg',
-  },
-  {
-    icon: LeafIcon,
-    title: 'ŽULOVÉ KOCKY',
-    subtitle: 'Dlažba z prírodného kameňa',
-    text: 'Pokládka žulových kociek a prírodného kameňa – odolné a estetické riešenie pre vjazdy, námestia a okolie budov.',
-    image: '/images/works/work-08.jpg',
-  },
-  {
-    icon: HouseIcon,
-    title: 'SPEVNENÉ PLOCHY',
-    subtitle: 'Parkoviská a vjazdy',
-    text: 'Realizácia spevnených plôch, parkovísk a príjazdových ciest s dôrazom na únosnosť a správne spádovanie.',
-    image: '/images/works/work-07.jpg',
-  },
-  {
-    icon: RenovateIcon,
-    title: 'ZEMNÉ PRÁCE',
-    subtitle: 'Výkopy a príprava podkladu',
-    text: 'Výkopové a prípravné práce, úprava terénu, zhutnenie podkladu a odvodnenie pred samotnou pokládkou.',
-    image: '/images/works/work-16.jpg',
-  },
-  {
-    icon: RoofIcon,
-    title: 'CHODNÍKY A CESTY',
-    subtitle: 'Mestská infraštruktúra',
-    text: 'Výstavba a rekonštrukcia chodníkov vrátane vodiacich a varovných pásov pre bezbariérový pohyb.',
-    image: '/images/works/work-03.jpg',
-  },
-  {
-    icon: PlasterIcon,
-    title: 'REKONŠTRUKCIE',
-    subtitle: 'Obnova spevnených plôch',
-    text: 'Rekonštrukcie existujúcich chodníkov, vjazdov a plôch – výmena povrchu, obrubníkov a odvodnenia.',
-    image: '/images/works/work-02.jpg',
-  },
-  {
-    icon: WindowIcon,
-    title: 'ODVODNENIE',
-    subtitle: 'Žľaby a vpuste',
-    text: 'Osadenie odvodňovacích žľabov, vpustí a líniových systémov, aby na vašich plochách nestála voda.',
-    image: '/images/works/work-06.jpg',
+    title: 'BETÓNOVÉ PLOTY',
+    subtitle: 'Odolné a bezúdržbové riešenia',
+    text: 'Montáž betónových plotov rôznych vzorov a výšok – pevné a bezúdržbové oplotenie pre vaše súkromie a bezpečnosť.',
   },
   {
     icon: FenceIcon,
-    title: 'OPLOTENIA',
-    subtitle: 'Ploty a oplotenie pozemkov',
-    text: 'Betónové aj panelové (3D) ploty a oplotenia pozemkov – pevné, moderné a bezúdržbové riešenia.',
-    image: '/images/fence-3d.jpg',
+    title: '3D PLOTY',
+    subtitle: 'Moderné panelové oplotenia',
+    text: '3D panelové ploty – moderné, pevné a nenáročné na údržbu, ideálne pre rodinné domy aj firemné areály.',
+  },
+  {
+    icon: LeafIcon,
+    title: 'ZÁHRADNÉ PRÁCE',
+    subtitle: 'Úprava a realizácia exteriéru',
+    text: 'Kompletné záhradné a exteriérové práce – úprava terénu, výsadba, zakladanie trávnikov a realizácia okolia domu.',
   },
 ]
 
 export const servicesIntro =
-  'Špecializujeme sa na zámkovú dlažbu, obrubníky, žulové kocky a spevnené plochy. Postaráme sa o celú realizáciu – od zemných prác a podkladu cez odvodnenie až po finálnu pokládku.'
+  'Ponúkame zámkovú dlažbu, betónové a 3D ploty a záhradné práce. Momentálne sa venujeme najmä zámkovej dlažbe.'
 
 export const reasons = [
   { icon: AwardIcon, text: 'Dlhoročné skúsenosti' },
@@ -117,12 +79,12 @@ export const reasons = [
 export const about = {
   photo: '/images/owner.jpg',
   paragraphs: [
-    'D-A DIURDSTAV s.r.o. je tím skúsených dlaždičov a stavbárov, pre ktorých je každá realizácia vizitkou. Venujeme sa zámkovej dlažbe, obrubníkom, žulovým kockám a spevneným plochám.',
-    'Pracujeme precízne, čisto a v dohodnutých termínoch. Postaráme sa o celý proces – od obhliadky a návrhu cez zemné práce a podklad až po finálnu pokládku a upratanie po sebe.',
+    'D-A DIURDSTAV s.r.o. je tím skúsených dlaždičov. Špecializujeme sa na zámkovú dlažbu, betónové a 3D ploty a záhradné práce. Pôsobíme v Bratislave a okolí.',
+    'Pracujeme precízne, čisto a v dohodnutých termínoch – od obhliadky a podkladu až po finálnu pokládku a upratanie po sebe. Momentálne sa venujeme najmä zámkovej dlažbe.',
   ],
   stats: [
-    { value: '10+', label: 'rokov skúseností' },
-    { value: '250+', label: 'dokončených realizácií' },
+    { value: '8', label: 'rokov praxe' },
+    { value: '150', label: 'dokončených realizácií' },
     { value: '100 %', label: 'spokojných zákazníkov' },
   ],
 }

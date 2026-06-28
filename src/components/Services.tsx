@@ -1,4 +1,4 @@
-import { services, servicesIntro } from '../data'
+import { currentFocus, services, servicesIntro } from '../data'
 import { ArrowRightIcon } from './icons'
 import { Reveal } from './Reveal'
 
@@ -14,6 +14,11 @@ export function Services() {
             Naše <span className="text-brand-500">služby</span>
           </h2>
           <p className="mt-4 max-w-3xl text-ink-500">{servicesIntro}</p>
+
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700">
+            <span className="h-2 w-2 rounded-full bg-brand-500" />
+            {currentFocus}
+          </div>
         </Reveal>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -21,29 +26,19 @@ export function Services() {
             const Icon = service.icon
             return (
               <Reveal key={service.title} delay={(i % 4) * 80}>
-                <article className="group h-full overflow-hidden rounded-lg border border-ink-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <span className="absolute top-3 left-3 grid h-10 w-10 place-items-center rounded-md bg-brand-500 text-white shadow-md">
-                      <Icon width={22} height={22} />
-                    </span>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-display text-lg font-bold tracking-wide text-ink-900">
-                      {service.title}
-                    </h3>
-                    <p className="mt-0.5 text-sm font-semibold text-brand-500">
-                      {service.subtitle}
-                    </p>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-500">
-                      {service.text}
-                    </p>
-                  </div>
+                <article className="group h-full rounded-lg border border-ink-100 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl">
+                  <span className="grid h-14 w-14 place-items-center rounded-xl bg-brand-500/10 text-brand-500 transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-white">
+                    <Icon width={28} height={28} />
+                  </span>
+                  <h3 className="mt-5 font-display text-lg font-bold tracking-wide text-ink-900">
+                    {service.title}
+                  </h3>
+                  <p className="mt-0.5 text-sm font-semibold text-brand-500">
+                    {service.subtitle}
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-500">
+                    {service.text}
+                  </p>
                 </article>
               </Reveal>
             )
