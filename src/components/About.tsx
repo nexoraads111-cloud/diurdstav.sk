@@ -1,4 +1,4 @@
-import { about, company } from '../data'
+import { about, company, whatsappDigits } from '../data'
 import { CheckIcon } from './icons'
 import { Reveal } from './Reveal'
 
@@ -87,13 +87,26 @@ export function About() {
                   <dd className="text-right font-semibold text-ink-900">{company.region}</dd>
                 </div>
                 <div className="flex justify-between gap-3 border-b border-ink-100 py-1">
-                  <dt className="text-ink-500">Telefón</dt>
+                  <dt className="text-ink-500">Telefón (volať)</dt>
                   <dd className="text-right">
                     <a
                       href={`tel:${company.phone.replace(/\s/g, '')}`}
                       className="font-semibold text-brand-600 hover:underline"
                     >
                       {company.phone}
+                    </a>
+                  </dd>
+                </div>
+                <div className="flex justify-between gap-3 border-b border-ink-100 py-1">
+                  <dt className="text-ink-500">WhatsApp</dt>
+                  <dd className="text-right">
+                    <a
+                      href={`https://wa.me/${whatsappDigits}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-semibold text-brand-600 hover:underline"
+                    >
+                      {company.whatsapp}
                     </a>
                   </dd>
                 </div>

@@ -18,7 +18,7 @@ export const company = {
   name: 'D-A DIURDSTAV',
   legal: 's.r.o.',
   subtitle: 'Stavebné Práce',
-  phone: '+421 944 667 935',
+  phone: '+421 950 480 672',
   whatsapp: '+421 944 667 935',
   email: 'durdstav@gmail.com',
   web: 'www.diurdstav.sk',
