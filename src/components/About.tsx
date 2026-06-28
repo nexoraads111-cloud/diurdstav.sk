@@ -67,6 +67,50 @@ export function About() {
               ))}
             </dl>
 
+            <div className="mt-8 rounded-lg border border-ink-100 bg-ink-50 p-5">
+              <h3 className="font-display text-sm font-bold tracking-widest text-ink-900 uppercase">
+                Firemné údaje a kontakt
+              </h3>
+              <dl className="mt-3 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
+                <div className="flex justify-between gap-3 border-b border-ink-100 py-1">
+                  <dt className="text-ink-500">Spoločnosť</dt>
+                  <dd className="text-right font-semibold text-ink-900">
+                    {company.name} {company.legal}
+                  </dd>
+                </div>
+                <div className="flex justify-between gap-3 border-b border-ink-100 py-1">
+                  <dt className="text-ink-500">IČO</dt>
+                  <dd className="text-right font-semibold text-ink-900">{company.ico}</dd>
+                </div>
+                <div className="flex justify-between gap-3 border-b border-ink-100 py-1">
+                  <dt className="text-ink-500">Pôsobnosť</dt>
+                  <dd className="text-right font-semibold text-ink-900">{company.region}</dd>
+                </div>
+                <div className="flex justify-between gap-3 border-b border-ink-100 py-1">
+                  <dt className="text-ink-500">Telefón</dt>
+                  <dd className="text-right">
+                    <a
+                      href={`tel:${company.phone.replace(/\s/g, '')}`}
+                      className="font-semibold text-brand-600 hover:underline"
+                    >
+                      {company.phone}
+                    </a>
+                  </dd>
+                </div>
+                <div className="flex justify-between gap-3 py-1 sm:col-span-2">
+                  <dt className="text-ink-500">E-mail</dt>
+                  <dd className="text-right">
+                    <a
+                      href={`mailto:${company.email}`}
+                      className="font-semibold text-brand-600 hover:underline"
+                    >
+                      {company.email}
+                    </a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
             <a
               href="#kontakt"
               className="mt-8 inline-block rounded-sm bg-brand-500 px-7 py-3 text-sm font-bold tracking-wide text-white uppercase transition-colors hover:bg-brand-600"
