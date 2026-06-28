@@ -46,6 +46,8 @@ export function Footer() {
               <GlobeIcon width={18} height={18} className="text-brand-500" />
               {company.web}
             </li>
+            <li className="pt-1 text-ink-400">IČO: {company.ico}</li>
+            <li className="text-ink-400">{company.region}</li>
           </ul>
         </div>
 
@@ -56,7 +58,7 @@ export function Footer() {
           <div className="mt-5 overflow-hidden rounded-sm border border-white/10">
             <iframe
               title="Mapa – D-A DIURDSTAV"
-              src="https://www.google.com/maps?q=Žilina,Slovensko&z=12&output=embed"
+              src="https://www.google.com/maps?q=Bratislava,Slovensko&z=11&output=embed"
               className="h-48 w-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

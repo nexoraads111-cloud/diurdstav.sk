@@ -1,4 +1,5 @@
-import { services } from '../data'
+import { currentFocus, serviceArea, services } from '../data'
+import { PinIcon } from './icons'
 
 export function Hero() {
   return (
@@ -16,16 +17,19 @@ export function Hero() {
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-14 lg:grid-cols-[1fr_350px] lg:py-20">
           <div className="flex max-w-xl flex-col justify-center">
-            <h1 className="font-display text-5xl leading-[0.95] font-bold text-white uppercase sm:text-6xl lg:text-7xl">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold tracking-wide text-white uppercase">
+              <PinIcon width={15} height={15} className="text-brand-500" />
+              {serviceArea}
+            </span>
+            <h1 className="mt-5 font-display text-5xl leading-[0.95] font-bold text-white uppercase sm:text-6xl lg:text-7xl">
               Staviame
               <br />
               <span className="text-brand-500">vaše sny</span>
             </h1>
             <p className="mt-6 text-lg text-ink-200">
-              Kvalitné stavebné práce
-              <br />
-              od základov až po strechu.
+              Zámková dlažba, betónové ploty, 3D ploty a záhradné práce.
             </p>
+            <p className="mt-2 font-semibold text-brand-400">{currentFocus}</p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="#sluzby"

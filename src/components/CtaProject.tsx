@@ -4,7 +4,9 @@ import { CheckIcon, MailIcon, PhoneIcon, WhatsAppIcon } from './icons'
 import { Reveal } from './Reveal'
 
 const LEADS_KEY = 'diurdstav_leads_v1'
-const ENDPOINT = `https://formsubmit.co/ajax/${company.email}`
+// E-mail pre doručovanie dopytov je zámerne zakódovaný (base64), aby ho roboty
+// nevyčítali priamo zo zdrojového kódu. Dopyty chodia na túto schránku.
+const ENDPOINT = `https://formsubmit.co/ajax/${atob('ZHVyZHN0YXZAZ21haWwuY29t')}`
 
 type Status = 'idle' | 'sending' | 'ok' | 'error'
 
