@@ -3,10 +3,15 @@ import {
   ClockIcon,
   FenceIcon,
   GridIcon,
+  HouseIcon,
   LeafIcon,
+  PlasterIcon,
+  RenovateIcon,
+  RoofIcon,
   TagIcon,
   UsersIcon,
   WallIcon,
+  WindowIcon,
 } from './components/icons'
 
 export const company = {
@@ -63,10 +68,40 @@ export const services = [
     subtitle: 'Úprava a realizácia exteriéru',
     text: 'Kompletné záhradné a exteriérové práce – úprava terénu, výsadba, zakladanie trávnikov a realizácia okolia domu.',
   },
+  {
+    icon: HouseIcon,
+    title: 'NOVOSTAVBY',
+    subtitle: 'Rodinné domy na kľúč',
+    text: 'Výstavba rodinných domov a objektov od základov až po odovzdanie.',
+  },
+  {
+    icon: RenovateIcon,
+    title: 'REKONŠTRUKCIE',
+    subtitle: 'Bytov, domov a objektov',
+    text: 'Rekonštrukcie bytov, domov a komerčných priestorov podľa vašich predstáv.',
+  },
+  {
+    icon: RoofIcon,
+    title: 'STRECHY',
+    subtitle: 'Kompletné strešné systémy',
+    text: 'Realizácia striech vrátane krytiny, izolácie a klampiarskych prác.',
+  },
+  {
+    icon: PlasterIcon,
+    title: 'OMIETKY A FASÁDY',
+    subtitle: 'Vnútorné a vonkajšie úpravy',
+    text: 'Vnútorné omietky, fasádne omietky a kompletné povrchové úpravy.',
+  },
+  {
+    icon: WindowIcon,
+    title: 'ZATEPĽOVANIE',
+    subtitle: 'Úspora energie a moderný vzhľad',
+    text: 'Zatepľovacie systémy a fasádne obklady – úspora nákladov na energie.',
+  },
 ]
 
 export const servicesIntro =
-  'Ponúkame zámkovú dlažbu, betónové a 3D ploty a záhradné práce. Momentálne sa venujeme najmä zámkovej dlažbe.'
+  'Ponúkame komplexné stavebné a dlaždičské práce – od zámkovej dlažby a plotov cez záhradné práce až po novostavby, rekonštrukcie, strechy a zateplenie.'
 
 export const reasons = [
   { icon: AwardIcon, text: 'Dlhoročné skúsenosti' },

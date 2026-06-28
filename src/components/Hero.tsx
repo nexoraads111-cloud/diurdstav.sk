@@ -27,7 +27,7 @@ export function Hero() {
               <span className="text-brand-500">vaše sny</span>
             </h1>
             <p className="mt-6 text-lg text-ink-200">
-              Zámková dlažba, betónové ploty, 3D ploty a záhradné práce.
+              Komplexné stavebné a dlaždičské práce – kvalitne, čisto a v termíne.
             </p>
             <p className="mt-2 font-semibold text-brand-400">{currentFocus}</p>
             <div className="mt-8 flex flex-wrap gap-4">
