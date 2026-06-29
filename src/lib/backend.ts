@@ -3,7 +3,7 @@ import type { Review } from '../data'
 // Endpoint malého backendu (Google Apps Script). Je zámerne zakódovaný (base64),
 // aby v zdrojovom kóde nebola priamo viditeľná adresa ani e-mail.
 const BACKEND_B64 =
-  'aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5bmZLanhzNVY1MG50dy1mM0RVZndHTG9nZDdEbWt4OGtNekJCcXJDdlB6OXVzWG1udXY4N0hwVW9qRThBTUloazYvZXhlYw=='
+  'aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6LWxWTzF0THo2U0VlOEtzNV9oR1VkZGVkOUtLNlRGQk13UnVwamREWVlIYXh5SjNPeXFoUzhwSTBpMVB4OWhSSFYvZXhlYw=='
 
 export const BACKEND_URL = (() => {
   try {
