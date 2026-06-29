@@ -101,22 +101,30 @@ export function Reviews() {
                 Recenzie
               </h2>
             </div>
-            <div className="flex items-center gap-3 rounded-lg bg-white px-5 py-3 shadow-sm">
-              <span className="font-display text-3xl font-bold text-ink-900">
-                {average.toFixed(1)}
-              </span>
-              <span>
-                <Stars value={Math.round(average)} />
-                <span className="block text-xs text-ink-500">
-                  {all.length} hodnotení
+            {all.length > 0 && (
+              <div className="flex items-center gap-3 rounded-lg bg-white px-5 py-3 shadow-sm">
+                <span className="font-display text-3xl font-bold text-ink-900">
+                  {average.toFixed(1)}
                 </span>
-              </span>
-            </div>
+                <span>
+                  <Stars value={Math.round(average)} />
+                  <span className="block text-xs text-ink-500">
+                    {all.length} hodnotení
+                  </span>
+                </span>
+              </div>
+            )}
           </div>
         </Reveal>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
           <div className="grid gap-4 sm:grid-cols-2">
+            {all.length === 0 && (
+              <div className="sm:col-span-2 rounded-lg border border-dashed border-ink-200 bg-white p-8 text-center text-ink-500">
+                Zatiaľ tu nie sú žiadne recenzie. Buďte prvý, kto nám napíše
+                recenziu!
+              </div>
+            )}
             {all.slice(0, 6).map((review, i) => (
               <Reveal key={`${review.name}-${review.date}-${i}`} delay={(i % 2) * 80}>
                 <article className="relative h-full rounded-lg border border-ink-100 bg-white p-6 shadow-sm">
