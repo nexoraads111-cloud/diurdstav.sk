@@ -14,10 +14,27 @@ const OWNER_EMAIL = 'durdstav@gmail.com';
 // Zmeňte na vlastné tajné heslo (ľubovoľný text) – chráni odkazy na schválenie.
 const SECRET = 'ZMENTE_MA_na_nahodny_text_123';
 
+/**
+ * Vráti tabuľku (Spreadsheet) aj keď skript NIE je naviazaný na Google Sheet.
+ * Ak nie je aktívna tabuľka, vytvorí sa raz nová a jej ID sa uloží.
+ */
+function getSS() {
+  const active = SpreadsheetApp.getActiveSpreadsheet();
+  if (active) return active;
+  const props = PropertiesService.getScriptProperties();
+  const id = props.getProperty('SHEET_ID');
+  if (id) {
+    return SpreadsheetApp.openById(id);
+  }
+  const created = SpreadsheetApp.create('DIURDSTAV web data');
+  props.setProperty('SHEET_ID', created.getId());
+  return created;
+}
+
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = getSS();
 
     if (data.type === 'review') {
       const sheet = ss.getSheetByName('Reviews') || ss.insertSheet('Reviews');
@@ -60,7 +77,7 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = getSS();
   const action = e.parameter.action;
 
   if (action === 'approve' || action === 'reject') {
