@@ -29,3 +29,15 @@ Pošlite mi skopírovanú **URL webovej aplikácie** (`https://script.google.com
 Ja ňou prepojím formulár dopytu aj recenzie. Adresu zoberiem do kódu zamaskovane.
 
 > Pozn.: prvýkrát môže Google pýtať potvrdenie povolení („Advanced → Go to project (unsafe)") – je to váš vlastný skript, je to v poriadku.
+
+## Po úprave kódu (aby sa zmena prejavila na rovnakej URL)
+
+Ak zmeníte `Code.gs`, treba nasadiť novú verziu (URL ostane rovnaká):
+
+1. **Nasadiť → Spravovať nasadenia** (Deploy → Manage deployments).
+2. Pri aktívnom nasadení kliknite **ceruzku (Upraviť)**.
+3. V poli **Verzia (Version)** vyberte **Nová verzia (New version)**.
+4. **Kto má prístup:** *Ktokoľvek (Anyone)*.
+5. **Nasadiť (Deploy)**.
+
+> Skript funguje aj keď nie je naviazaný na konkrétnu tabuľku – pri prvom použití si sám vytvorí tabuľku „DIURDSTAV web data" vo vašom Google Drive a tam ukladá dopyty aj recenzie.
