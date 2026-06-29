@@ -1,12 +1,10 @@
 import { useState, type FormEvent } from 'react'
 import { company, whatsappDigits } from '../data'
+import { sendToBackend } from '../lib/backend'
 import { CheckIcon, MailIcon, PhoneIcon, WhatsAppIcon } from './icons'
 import { Reveal } from './Reveal'
 
 const LEADS_KEY = 'diurdstav_leads_v1'
-// E-mail pre doručovanie dopytov je zámerne zakódovaný (base64), aby ho roboty
-// nevyčítali priamo zo zdrojového kódu. Dopyty chodia na túto schránku.
-const ENDPOINT = `https://formsubmit.co/ajax/${atob('ZHVyZHN0YXZAZ21haWwuY29t')}`
 
 type Status = 'idle' | 'sending' | 'ok' | 'error'
 
@@ -54,23 +52,17 @@ export function CtaProject() {
     }
 
     try {
-      await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          Meno: lead.name,
-          Telefón: lead.phone,
-          Email: lead.email || '—',
-          Správa: lead.message || '—',
-          _subject: 'Nový dopyt / cenová ponuka z webu',
-          _template: 'table',
-        }),
+      await sendToBackend({
+        type: 'lead',
+        name: lead.name,
+        phone: lead.phone,
+        email: lead.email,
+        message: lead.message,
       })
-      setStatus('ok')
     } catch {
-      // Aj tak potvrdíme – dopyt je uložený lokálne a kontakt je k dispozícii.
-      setStatus('ok')
+      /* aj tak potvrdíme – dopyt je uložený lokálne a kontakt je k dispozícii */
     }
+    setStatus('ok')
 
     setName('')
     setPhone('')

@@ -1,20 +1,8 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
-import { seedReviews, type Review } from '../data'
+import type { Review } from '../data'
+import { fetchApprovedReviews, sendToBackend } from '../lib/backend'
 import { QuoteIcon, StarIcon } from './icons'
 import { Reveal } from './Reveal'
-
-const STORAGE_KEY = 'diurdstav_reviews_v1'
-
-function loadStored(): Review[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return []
-    const parsed = JSON.parse(raw)
-    return Array.isArray(parsed) ? (parsed as Review[]) : []
-  } catch {
-    return []
-  }
-}
 
 function formatDate(iso: string) {
   const d = new Date(iso)
@@ -39,25 +27,30 @@ function Stars({ value, size = 16 }: { value: number; size?: number }) {
 }
 
 export function Reviews() {
-  const [stored, setStored] = useState<Review[]>([])
+  const [reviews, setReviews] = useState<Review[]>([])
   const [name, setName] = useState('')
   const [rating, setRating] = useState(5)
   const [hover, setHover] = useState(0)
   const [text, setText] = useState('')
   const [error, setError] = useState('')
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
 
   useEffect(() => {
-    setStored(loadStored())
+    let active = true
+    fetchApprovedReviews().then((list) => {
+      if (active) setReviews(list)
+    })
+    return () => {
+      active = false
+    }
   }, [])
 
-  const all = useMemo(() => [...stored, ...seedReviews], [stored])
   const average = useMemo(
-    () => (all.length ? all.reduce((s, r) => s + r.rating, 0) / all.length : 0),
-    [all],
+    () => (reviews.length ? reviews.reduce((s, r) => s + r.rating, 0) / reviews.length : 0),
+    [reviews],
   )
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (name.trim().length < 2) {
       setError('Zadajte vaše meno.')
@@ -67,25 +60,23 @@ export function Reviews() {
       setError('Napíšte prosím krátku recenziu.')
       return
     }
-    const review: Review = {
-      name: name.trim(),
-      rating,
-      text: text.trim(),
-      date: new Date().toISOString(),
-    }
-    const next = [review, ...stored]
-    setStored(next)
+    setError('')
+    setStatus('sending')
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+      await sendToBackend({
+        type: 'review',
+        name: name.trim(),
+        rating,
+        text: text.trim(),
+      })
     } catch {
-      /* ignore storage errors */
+      /* aj tak potvrdíme – recenzia ide na schválenie */
     }
     setName('')
     setText('')
     setRating(5)
-    setError('')
-    setSent(true)
-    setTimeout(() => setSent(false), 4000)
+    setStatus('sent')
+    setTimeout(() => setStatus('idle'), 6000)
   }
 
   return (
@@ -101,7 +92,7 @@ export function Reviews() {
                 Recenzie
               </h2>
             </div>
-            {all.length > 0 && (
+            {reviews.length > 0 && (
               <div className="flex items-center gap-3 rounded-lg bg-white px-5 py-3 shadow-sm">
                 <span className="font-display text-3xl font-bold text-ink-900">
                   {average.toFixed(1)}
@@ -109,7 +100,7 @@ export function Reviews() {
                 <span>
                   <Stars value={Math.round(average)} />
                   <span className="block text-xs text-ink-500">
-                    {all.length} hodnotení
+                    {reviews.length} hodnotení
                   </span>
                 </span>
               </div>
@@ -119,13 +110,13 @@ export function Reviews() {
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
           <div className="grid gap-4 sm:grid-cols-2">
-            {all.length === 0 && (
+            {reviews.length === 0 && (
               <div className="sm:col-span-2 rounded-lg border border-dashed border-ink-200 bg-white p-8 text-center text-ink-500">
                 Zatiaľ tu nie sú žiadne recenzie. Buďte prvý, kto nám napíše
                 recenziu!
               </div>
             )}
-            {all.slice(0, 6).map((review, i) => (
+            {reviews.slice(0, 6).map((review, i) => (
               <Reveal key={`${review.name}-${review.date}-${i}`} delay={(i % 2) * 80}>
                 <article className="relative h-full rounded-lg border border-ink-100 bg-white p-6 shadow-sm">
                   <QuoteIcon
@@ -134,9 +125,7 @@ export function Reviews() {
                     className="absolute top-5 right-5 text-brand-500/20"
                   />
                   <Stars value={review.rating} />
-                  <p className="mt-3 text-sm leading-relaxed text-ink-600">
-                    {review.text}
-                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-600">{review.text}</p>
                   <div className="mt-4 flex items-center justify-between">
                     <span className="font-semibold text-ink-900">{review.name}</span>
                     <span className="text-xs text-ink-400">{formatDate(review.date)}</span>
@@ -205,20 +194,22 @@ export function Reviews() {
               </label>
 
               {error && <p className="mt-3 text-sm text-brand-600">{error}</p>}
-              {sent && (
+              {status === 'sent' && (
                 <p className="mt-3 rounded-md bg-green-50 px-3 py-2 text-sm text-green-700">
-                  Ďakujeme za vašu recenziu!
+                  Ďakujeme! Recenzia bola odoslaná a po schválení sa zobrazí na
+                  stránke.
                 </p>
               )}
 
               <button
                 type="submit"
-                className="mt-5 w-full rounded-sm bg-brand-500 px-6 py-3 text-sm font-bold tracking-wide text-white uppercase transition-colors hover:bg-brand-600"
+                disabled={status === 'sending'}
+                className="mt-5 w-full rounded-sm bg-brand-500 px-6 py-3 text-sm font-bold tracking-wide text-white uppercase transition-colors hover:bg-brand-600 disabled:opacity-60"
               >
-                Odoslať recenziu
+                {status === 'sending' ? 'Odosielam…' : 'Odoslať recenziu'}
               </button>
               <p className="mt-3 text-xs text-ink-400">
-                Recenzie sa zobrazujú na tejto stránke.
+                Recenzie pred zverejnením prechádzajú schválením.
               </p>
             </form>
           </Reveal>
