@@ -161,25 +161,5 @@ export type Review = {
   date: string
 }
 
-// Ukážkové recenzie (zobrazené vždy). Nové recenzie od návštevníkov
-// sa ukladajú v prehliadači (localStorage) a pridávajú sa pred tieto.
-export const seedReviews: Review[] = [
-  {
-    name: 'Martin K.',
-    rating: 5,
-    text: 'Vynikajúca práca! Položili nám príjazd zo zámkovej dlažby rýchlo a veľmi čisto. Všetko dokonale rovné, odporúčam.',
-    date: '2024-09-12',
-  },
-  {
-    name: 'Zuzana H.',
-    rating: 5,
-    text: 'Profesionálny prístup od obhliadky až po odovzdanie. Obrubníky a chodník vyzerajú skvele, termín dodržali.',
-    date: '2024-07-28',
-  },
-  {
-    name: 'Peter Novák',
-    rating: 4,
-    text: 'Spokojnosť s realizáciou parkovacej plochy. Komunikácia bezproblémová, cena férová.',
-    date: '2024-06-03',
-  },
-]
+// Žiadne ukážkové recenzie – zobrazujú sa iba reálne (po schválení).
+export const seedReviews: Review[] = []
