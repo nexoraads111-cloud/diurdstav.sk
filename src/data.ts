@@ -128,6 +128,7 @@ export const about = {
 export const workCategories = [
   { id: 'vsetko', label: 'Všetko' },
   { id: 'dlazba', label: 'Zámková dlažba' },
+  { id: 'zatravnovacia', label: 'Zatrávňovacia dlažba' },
   { id: 'obrubniky', label: 'Obrubníky' },
   { id: 'zemne', label: 'Zemné práce' },
 ] as const
@@ -136,6 +137,14 @@ export type WorkCategory = (typeof workCategories)[number]['id']
 
 // Reálne fotografie realizácií (priečinok public/images/works).
 export const works: { image: string; title: string; category: Exclude<WorkCategory, 'vsetko'> }[] = [
+  { image: '/images/works/work-19.jpg', title: 'Zatrávňovacia dlažba – parkovacia plocha', category: 'zatravnovacia' },
+  { image: '/images/works/work-20.jpg', title: 'Pokládka zatrávňovacej dlažby', category: 'zatravnovacia' },
+  { image: '/images/works/work-21.jpg', title: 'Zatrávňovacia dlažba a štrkové lôžko', category: 'zatravnovacia' },
+  { image: '/images/works/work-24.jpg', title: 'Zatrávňovacia dlažba so štrkovou výplňou', category: 'zatravnovacia' },
+  { image: '/images/works/work-17.jpg', title: 'Zatrávňovacia dlažba a chodník pri dome', category: 'zatravnovacia' },
+  { image: '/images/works/work-18.jpg', title: 'Pokládka zámkovej dlažby pri budove', category: 'dlazba' },
+  { image: '/images/works/work-22.jpg', title: 'Chodník zo zámkovej dlažby', category: 'dlazba' },
+  { image: '/images/works/work-23.jpg', title: 'Spevnená plocha a zatrávňovačka', category: 'dlazba' },
   { image: '/images/works/work-01.jpg', title: 'Dekoratívna dlažba na nároží', category: 'dlazba' },
   { image: '/images/works/work-02.jpg', title: 'Chodník popri ceste', category: 'dlazba' },
   { image: '/images/works/work-03.jpg', title: 'Dlažba na moste s vodiacim pásom', category: 'dlazba' },
