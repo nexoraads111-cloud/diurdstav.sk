@@ -82,21 +82,24 @@ function doGet(e) {
 
   if (action === 'approve' || action === 'reject') {
     if (e.parameter.key !== SECRET) {
-      return HtmlService.createHtmlOutput('<p>Neplatný kľúč.</p>');
+      return textPage('Neplatny kluc.');
     }
     const sheet = ss.getSheetByName('Reviews');
     if (sheet) {
       const last = sheet.getLastRow();
       const ids = last > 0 ? sheet.getRange(1, 1, last, 1).getValues() : [];
       for (let i = 0; i < ids.length; i++) {
-        if (ids[i][0] === e.parameter.id) {
+        if (String(ids[i][0]) === String(e.parameter.id)) {
           sheet.getRange(i + 1, 6).setValue(action === 'approve' ? 'approved' : 'rejected');
-          const msg = action === 'approve' ? 'Recenzia bola SCHVÁLENÁ a zobrazí sa na webe.' : 'Recenzia bola ODMIETNUTÁ.';
-          return HtmlService.createHtmlOutput('<div style="font-family:Arial;font-size:18px;padding:30px">' + msg + '</div>');
+          return textPage(
+            action === 'approve'
+              ? 'Recenzia bola SCHVALENA a zobrazi sa na webe. Toto okno mozete zavriet.'
+              : 'Recenzia bola ODMIETNUTA. Toto okno mozete zavriet.',
+          );
         }
       }
     }
-    return HtmlService.createHtmlOutput('<p>Recenzia sa nenašla.</p>');
+    return textPage('Recenzia sa nenasla.');
   }
 
   // Predvolene: vráť schválené recenzie ako JSON pre web.
@@ -114,6 +117,11 @@ function doGet(e) {
 
 function json(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
+}
+
+// Jednoduchá textová odpoveď (spoľahlivá – rovnaká cesta ako JSON, bez HtmlService).
+function textPage(msg) {
+  return ContentService.createTextOutput(msg).setMimeType(ContentService.MimeType.TEXT);
 }
 
 function escapeHtml(s) {
