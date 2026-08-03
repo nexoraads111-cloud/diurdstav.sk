@@ -19,7 +19,7 @@ export const company = {
   legal: 's.r.o.',
   subtitle: 'Stavebné Práce',
   phone: '+421 950 480 672',
-  whatsapp: '+421 944 667 935',
+  whatsapp: '+421 950 480 672',
   email: 'durdstav@gmail.com',
   web: 'www.diurdstav.sk',
   ico: '57 709 556',
@@ -28,7 +28,7 @@ export const company = {
 }
 
 // Číslo pre WhatsApp odkaz (iba číslice, medzinárodný formát).
-export const whatsappDigits = '421944667935'
+export const whatsappDigits = '421950480672'
 
 // Text o aktuálnom zameraní a oblasti pôsobenia.
 export const currentFocus = 'Momentálne realizujeme najmä zámkovú dlažbu.'
